@@ -1,38 +1,35 @@
-import React from 'react';
+import React, {Component, createContext} from 'react';
 import './App.css';
 import 'materialize-css/dist/css/materialize.css';
-import logo from './google-logo.svg';
 import { DoodleService } from './helper';
-import Loading from './Loading/Loading';
+import { GoogleImage } from './GoogleImage';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      doodleLoading: true,
-      googleDoodles: []
+
+export const DoodleContext = createContext([]);
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            doodleLoading: true,
+            googleDoodles: [],
+        };
     }
-  }
 
-  async componentDidMount() {
-    const response = await DoodleService.getRecentDoodles();
-    const json = await response.json();
-    this.setState({ googleDoodles: json, doodleLoading: false });
-  }
+    async componentDidMount() {
+        const response = await DoodleService.getRecentDoodles();
+        const json = await response.json();
+        this.setState({ googleDoodles: json, doodleLoading: false });
+    }
 
-  render() {
-    const { doodleLoading, googleDoodles } = this.state;
-    console.log(googleDoodles);
-    return (
-      <div className="logo-container">
-        <div className="google-logo">
-          {doodleLoading ? <Loading /> :
-          <img src={logo} className="App-logo" alt="logo" />
-          }
-        </div>
-      </div>
-    );
-  }
+    render() {
+        const { doodleLoading, googleDoodles } = this.state;
+        return <>
+            <DoodleContext.Provider value={googleDoodles}>
+                <GoogleImage doodleLoading={doodleLoading} googleDoodles={googleDoodles} />
+            </DoodleContext.Provider>
+        </>;
+    }
 }
 
 export default App;
