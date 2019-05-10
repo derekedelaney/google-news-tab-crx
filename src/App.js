@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'materialize-css/dist/css/materialize.css';
+import logo from './google-logo.svg';
+import { DoodleService } from './helper';
+import Loading from './Loading/Loading';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      doodleLoading: true,
+      googleDoodles: []
+    }
+  }
+
+  async componentDidMount() {
+    const response = await DoodleService.getRecentDoodles();
+    const json = await response.json();
+    this.setState({ googleDoodles: json, doodleLoading: false });
+  }
+
+  render() {
+    const { doodleLoading, googleDoodles } = this.state;
+    console.log(googleDoodles);
+    return (
+      <div className="logo-container">
+        <div className="google-logo">
+          {doodleLoading ? <Loading /> :
+          <img src={logo} className="App-logo" alt="logo" />
+          }
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
