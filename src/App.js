@@ -1,7 +1,7 @@
 import React, {Component, createContext} from 'react';
 import './App.css';
 import 'materialize-css/dist/css/materialize.css';
-import { DoodleService } from './helper';
+import { DoodleService, NewsService } from './helper';
 import { GoogleImage } from './GoogleImage';
 import { SearchBar } from './SearchBar';
 
@@ -18,6 +18,7 @@ class App extends Component {
     }
 
     async componentDidMount() {
+        NewsService.loadRssFeed();
         try {
             const response = await DoodleService.getRecentDoodles();
             const json = await response.json();
