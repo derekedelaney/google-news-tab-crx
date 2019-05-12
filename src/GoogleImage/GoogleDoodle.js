@@ -22,12 +22,12 @@ function ExtractDoodleForToday({doodles}) {
 
 function DisplayDoodle({title, link, image}) {
     return <a className="doodle-logo" href={link}>
-        <img src={image} alt={title} />
+        <img src={image} alt={title} title={title} />
     </a>;
 }
 function DisplayGoogle() {
     return <a className="google-logo" href="https://www.google.com/">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="google logo" title="google" />
     </a>
 }
 

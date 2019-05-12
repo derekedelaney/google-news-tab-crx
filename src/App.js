@@ -3,6 +3,7 @@ import './App.css';
 import 'materialize-css/dist/css/materialize.css';
 import { DoodleService } from './helper';
 import { GoogleImage } from './GoogleImage';
+import { SearchBar } from './SearchBar';
 
 
 export const DoodleContext = createContext([]);
@@ -17,17 +18,22 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        const response = await DoodleService.getRecentDoodles();
-        const json = await response.json();
-        this.setState({ googleDoodles: json, doodleLoading: false });
+        try {
+            const response = await DoodleService.getRecentDoodles();
+            const json = await response.json();
+            this.setState({ googleDoodles: json, doodleLoading: false });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     render() {
         const { doodleLoading, googleDoodles } = this.state;
         return <>
             <DoodleContext.Provider value={googleDoodles}>
-                <GoogleImage doodleLoading={doodleLoading} googleDoodles={googleDoodles} />
+                <GoogleImage doodleLoading={doodleLoading} />
             </DoodleContext.Provider>
+            <SearchBar />
         </>;
     }
 }

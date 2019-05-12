@@ -3,10 +3,11 @@
 }
 
 .logo-container {
-    height: 200px;
+    height: 220px;
     margin-top: var(--logo-margin-top);
     min-height: fit-content;
     position: relative;
+    text-align: center;
 }
 
 .google-logo {
@@ -18,6 +19,10 @@
     text-align: center;
 }
 
+.loading-wrapper {
+  padding-top: 120px;
+}
+
 .doodle-logo {
     height: 220px;
     left: calc(50% - 435px/2);
@@ -25,4 +30,37 @@
     position: absolute;
     width: 435px;
     text-align: center;
+}
+
+.google-search-container {
+    margin: 12px auto;
+    width: 580px;
+}
+
+.google-search-box {
+  position: relative;
+  background-color: #fff;
+  height: 46px;
+  border-radius: 22px;
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+}
+
+.google-serach-box:hover {
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+    border-color: rgba(223,225,229,0);
+}
+
+.google-search-input {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    padding: 0 20px;
+    height: 34px;
+    border: none;
+    background-color: transparent;
+}
+
+.google-search-input:focus {
+  outline: none;
 }
