@@ -13,7 +13,6 @@ function SearchBar() {
 }
 
 function focusAddressBar() {
-    //    This function triggers the event
     var keyEvent = new KeyboardEvent('keypress', {key: 'l', char: 'l', code: 'KeyL', metaKey: true});
     document.dispatchEvent(keyEvent);
 }
