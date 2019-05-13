@@ -1,12 +1,13 @@
 import React, {Component, createContext} from 'react';
 import './App.css';
 import 'materialize-css/dist/css/materialize.css';
-import { DoodleService, NewsService } from './helper';
+import { NetworkController } from './helper';
 import { GoogleImage } from './GoogleImage';
 import { SearchBar } from './SearchBar';
 
 
 export const DoodleContext = createContext([]);
+export const NewsContext = createContext([]);
 
 class App extends Component {
     constructor(props) {
@@ -14,27 +15,25 @@ class App extends Component {
         this.state = {
             doodleLoading: true,
             googleDoodles: [],
+            googleNews: [],
         };
     }
 
     async componentDidMount() {
-        NewsService.loadRssFeed();
-        try {
-            const response = await DoodleService.getRecentDoodles();
-            const json = await response.json();
-            this.setState({ googleDoodles: json, doodleLoading: false });
-        } catch (error) {
-            console.error(error);
-        }
+        const googleDoodles = await NetworkController.loadNews();
+        const googleNews = await NetworkController.loadNews();
+        this.setState({ googleDoodles, googleNews, doodleLoading: false });
     }
 
     render() {
-        const { doodleLoading, googleDoodles } = this.state;
+        const { doodleLoading, googleDoodles, googleNews } = this.state;
         return <>
             <DoodleContext.Provider value={googleDoodles}>
                 <GoogleImage doodleLoading={doodleLoading} />
             </DoodleContext.Provider>
             <SearchBar />
+            <NewsContext.Provider value={googleNews}>
+            </NewsContext.Provider>
         </>;
     }
 }
