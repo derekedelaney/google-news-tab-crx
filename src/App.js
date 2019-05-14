@@ -20,7 +20,7 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        const googleDoodles = await NetworkController.loadNews();
+        const googleDoodles = await NetworkController.loadDoodles();
         const googleNews = await NetworkController.loadNews();
         this.setState({ googleDoodles, googleNews, doodleLoading: false });
     }

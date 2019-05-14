@@ -5,18 +5,15 @@
 .logo-container {
     height: 220px;
     margin-top: var(--logo-margin-top);
-    min-height: fit-content;
     position: relative;
     text-align: center;
+    display: flex;
+    justify-content: center;
+
 }
 
 .google-logo {
     height: 92px;
-    left: calc(50% - 272px/2);
-    bottom: 0;
-    position: absolute;
-    width: 272px;
-    text-align: center;
 }
 
 .loading-wrapper {
@@ -25,11 +22,6 @@
 
 .doodle-logo {
     height: 220px;
-    left: calc(50% - 435px/2);
-    bottom: 0;
-    position: absolute;
-    width: 435px;
-    text-align: center;
 }
 
 .google-search-container {
