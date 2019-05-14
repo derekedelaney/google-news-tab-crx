@@ -8,20 +8,20 @@
     position: relative;
     text-align: center;
     display: flex;
-    justify-content: center;
-
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .google-logo {
     height: 92px;
 }
 
-.loading-wrapper {
-  padding-top: 120px;
-}
-
 .doodle-logo {
     height: 220px;
+}
+
+.loading-wrapper {
+    padding-top: 120px;
 }
 
 .google-search-container {
