@@ -4,6 +4,7 @@ import 'materialize-css/dist/css/materialize.css';
 import { NetworkController } from './helper';
 import { GoogleImage } from './GoogleImage';
 import { SearchBar } from './SearchBar';
+import { GoogleNews } from './GoogleNews';
 
 
 export const DoodleContext = createContext([]);
@@ -15,7 +16,7 @@ class App extends Component {
         this.state = {
             doodleLoading: true,
             googleDoodles: [],
-            googleNews: [],
+            googleNews: {},
         };
     }
 
@@ -32,8 +33,7 @@ class App extends Component {
                 <GoogleImage doodleLoading={doodleLoading} />
             </DoodleContext.Provider>
             <SearchBar />
-            <NewsContext.Provider value={googleNews}>
-            </NewsContext.Provider>
+            <GoogleNews googleNews={googleNews} />
         </>;
     }
 }

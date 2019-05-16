@@ -1,0 +1,22 @@
+.googleNewsContainer {
+    width: 700px;
+    margin: auto;
+    color: #202124;
+}
+
+.googleNewsContainer h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: 'Google Sans Display',sans-serif;
+}
+
+.googleNewsContainer h2 a {
+    color: inherit;
+}
+
+.newsStoryContainer {
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 12px;
+}

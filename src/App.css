@@ -30,12 +30,12 @@
 }
 
 .google-search-box {
-  position: relative;
-  background-color: #fff;
-  height: 46px;
-  border-radius: 22px;
-  border: 1px solid #dfe1e5;
-  box-shadow: none;
+    position: relative;
+    background-color: #fff;
+    height: 46px;
+    border-radius: 22px;
+    border: 1px solid #dfe1e5;
+    box-shadow: none;
 }
 
 .google-serach-box:hover {
@@ -55,4 +55,10 @@
 
 .google-search-input:focus {
   outline: none;
+}
+
+.class {
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: 'Google Sans Display',sans-serif;
 }
