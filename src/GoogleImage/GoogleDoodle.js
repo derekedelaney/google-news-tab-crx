@@ -5,7 +5,7 @@ import logo from './google-logo.svg';
 
 function GoogleDoodle() {
     return <DoodleContext.Consumer>
-        {googleDoodles => (
+        {(googleDoodles = []) => (
             <ExtractDoodleForToday doodles={googleDoodles}/>
         )}
     </DoodleContext.Consumer>
