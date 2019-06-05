@@ -6,7 +6,6 @@ import { GoogleImage } from './GoogleImage';
 import { SearchBar } from './SearchBar';
 import { GoogleNews } from './GoogleNews';
 
-
 export const DoodleContext = createContext([]);
 export const NewsContext = createContext([]);
 

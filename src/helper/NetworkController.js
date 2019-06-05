@@ -3,15 +3,28 @@ import { DoodleService, NewsService } from '.';
 class NetworkController {
     static async loadDoodles() {
         try {
+            let latestTaskRun;
             const latestTaskRunResponse = await DoodleService.getLastRunDoodleTask();
-            const latestTaskRun = await latestTaskRunResponse.json();
-            const today = new Date().toLocaleDateString();
-            const lastRunDate = new Date(latestTaskRun.data.startedAt).toLocaleDateString();
-            if(lastRunDate < today) {
-                await DoodleService.runDoodleTask();
+            if (latestTaskRunResponse.ok) {
+                latestTaskRun = await latestTaskRunResponse.json();
+            } else {
+                console.error(
+                    (await latestTaskRunResponse.json()).error.message
+                );
+            }
+            if (latestTaskRun) {
+                const today = new Date().toLocaleDateString();
+                const lastRunDate = new Date(
+                    latestTaskRun.data.startedAt
+                ).toLocaleDateString();
+                if (lastRunDate < today) {
+                    await DoodleService.runDoodleTask();
+                }
             }
             const response = await DoodleService.getRecentDoodles();
-            return response.json();
+            if (response.ok) {
+                return response.json();
+            }
         } catch (error) {
             console.error('Cannot load doodles', error);
         }
@@ -24,7 +37,6 @@ class NetworkController {
         } catch (error) {
             console.error('Cannot load news', error);
         }
-
     }
 }
 

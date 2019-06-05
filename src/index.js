@@ -3,6 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'intersection-observer'
+
+/**
+ * Do feature detection, to figure out which polyfills needs to be imported.
+ **/
+(async function loadPolyfills() {
+    if (typeof window.IntersectionObserver === 'undefined') {
+      await import('intersection-observer')
+    }
+})()
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
