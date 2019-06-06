@@ -4,6 +4,8 @@ import { InView } from 'react-intersection-observer';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
+import OpenInNew from '@material-ui/icons/OpenInNew';
 import './index.css';
 
 const StyledTabs = withStyles({
@@ -14,7 +16,7 @@ const StyledTabs = withStyles({
     },
     indicator: {
         backgroundColor: '#1890ff',
-    },
+    }
 })(Tabs);
 
 const StyledTab = withStyles(theme => ({
@@ -22,7 +24,6 @@ const StyledTab = withStyles(theme => ({
         textTransform: 'none',
         minWidth: 72,
         fontWeight: theme.typography.fontWeightRegular,
-        marginRight: theme.spacing(4),
         '&:hover': {
             color: '#40a9ff',
             opacity: 1,
@@ -35,9 +36,29 @@ const StyledTab = withStyles(theme => ({
             color: '#40a9ff',
             backgroundColor: 'transparent',
         },
-    },
-    selected: {},
+    }
 }))(props => <Tab disableRipple {...props} />);
+
+const StyledButton = withStyles(theme => ({
+    root: {
+        flex: 1,
+        minWidth: '110px',
+        fontWeight: theme.typography.fontWeightRegular,
+        opacity: 0.7,
+        fontSize: '0.8125rem',
+        '&:hover': {
+            color: '#40a9ff',
+            opacity: 1,
+            backgroundColor: 'transparent',
+        },
+    },
+    label: {
+        textTransform: 'none',
+        '& > svg': {
+            marginLeft: '6px'
+        }
+    }
+}))(props => <Button disableRipple href="#" {...props} />);
 
 function GoogleNews(props) {
     const {
@@ -48,13 +69,14 @@ function GoogleNews(props) {
         setIsInView(inView);
     }
 
-    console.log(isInView);
     return (
         <div className="googleNewsContainer">
             <InView onChange={handleChange} threshold={1}>
                 <NewsTabs isInView={isInView} />
             </InView>
-            {!isInView && <div style={{ height: 48 }} />}
+            {!isInView && (
+                <div style={{ height: 48 }} />
+            ) /* A place holder when the tabs are fixed to the top */}
             {items.map(item => (
                 <NewsStory key={item.guid} {...item} />
             ))}
@@ -79,6 +101,7 @@ function NewsTabs({ isInView }) {
             <StyledTab label="Top News" />
             <StyledTab label="U.S." />
             <StyledTab label="World" />
+            <StyledButton>Local Stories<OpenInNew fontSize="inherit" /></StyledButton>
             <StyledTab label="Business" />
             <StyledTab label="Technology" />
             <StyledTab label="Entertainment" />

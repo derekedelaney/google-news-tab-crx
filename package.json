@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.0.2",
+    "@material-ui/icons": "^4.0.1",
     "classnames": "^2.2.6",
     "intersection-observer": "^0.7.0",
     "materialize-css": "^1.0.0-rc.2",

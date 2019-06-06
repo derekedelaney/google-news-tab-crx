@@ -14,8 +14,6 @@ function GoogleDoodle() {
 function ExtractDoodleForToday({doodles}) {
     const today = new Date().toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     const todaysDoodles = doodles.filter(d => d.pubDate === today);
-    console.log(doodles);
-    console.log(today);
     // const todaysDoodles = []
     const doodle = todaysDoodles.length > 0 ? todaysDoodles[Math.floor(Math.random()*todaysDoodles.length)] : undefined
 
