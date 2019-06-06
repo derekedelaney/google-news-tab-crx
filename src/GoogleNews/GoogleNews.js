@@ -10,7 +10,7 @@ const StyledTabs = withStyles({
     root: {
         borderBottom: '1px solid #e8e8e8',
         zIndex: 2,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
     },
     indicator: {
         backgroundColor: '#1890ff',
@@ -54,6 +54,7 @@ function GoogleNews(props) {
             <InView onChange={handleChange} threshold={1}>
                 <NewsTabs isInView={isInView} />
             </InView>
+            {!isInView && <div style={{ height: 48 }} />}
             {items.map(item => (
                 <NewsStory key={item.guid} {...item} />
             ))}
@@ -71,7 +72,7 @@ function NewsTabs({ isInView }) {
         <StyledTabs
             value={tabId}
             onChange={handleChange}
-            variant={isInView ? "scrollable" : "fullWidth"}
+            variant={isInView ? 'scrollable' : 'fullWidth'}
             scrollButtons="auto"
             classes={{ root: !isInView && 'fixed-tab' }}
         >
