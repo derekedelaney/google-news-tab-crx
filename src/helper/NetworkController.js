@@ -30,9 +30,9 @@ class NetworkController {
         }
     }
 
-    static async loadNews() {
+    static async loadNews(topic) {
         try {
-            const response = await NewsService.loadRssFeed();
+            const response = await NewsService.loadRssFeed(topic);
             return response.json();
         } catch (error) {
             console.error('Cannot load news', error);

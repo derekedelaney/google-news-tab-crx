@@ -16,23 +16,30 @@ class App extends Component {
             doodleLoading: true,
             googleDoodles: [],
             googleNews: {},
+            newsLoading: true
         };
     }
 
     async componentDidMount() {
         const googleDoodles = await NetworkController.loadDoodles();
         const googleNews = await NetworkController.loadNews();
-        this.setState({ googleDoodles, googleNews, doodleLoading: false });
+        this.setState({ googleDoodles, googleNews, doodleLoading: false, newsLoading: false });
+    }
+
+    handleNewsChange = async topic => {
+        this.setState({ newsLoading: true, googleNews: {} })
+        const googleNews = await NetworkController.loadNews(topic);
+        this.setState({ googleNews, newsLoading: false });
     }
 
     render() {
-        const { doodleLoading, googleDoodles, googleNews } = this.state;
+        const { doodleLoading, googleDoodles, googleNews, newsLoading } = this.state;
         return <>
             <DoodleContext.Provider value={googleDoodles}>
                 <GoogleImage doodleLoading={doodleLoading} />
             </DoodleContext.Provider>
             <SearchBar />
-            <GoogleNews googleNews={googleNews} />
+            <GoogleNews googleNews={googleNews} onNewsChange={this.handleNewsChange} newsLoading={newsLoading} />
         </>;
     }
 }
