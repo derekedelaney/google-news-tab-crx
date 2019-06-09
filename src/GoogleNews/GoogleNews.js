@@ -13,6 +13,7 @@ const StyledTabs = withStyles({
         borderBottom: '1px solid #e8e8e8',
         zIndex: 2,
         backgroundColor: '#fff',
+        margin: 12
     },
     indicator: {
         backgroundColor: '#1890ff',
