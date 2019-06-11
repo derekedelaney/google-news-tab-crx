@@ -1,5 +1,8 @@
 import { DoodleService, NewsService } from '.';
 
+function isDateBeforeToday(date) {
+    return new Date(date.toLocaleDateString()) < new Date(new Date().toLocaleDateString());
+}
 class NetworkController {
     static async loadDoodles() {
         try {
@@ -13,11 +16,8 @@ class NetworkController {
                 );
             }
             if (latestTaskRun) {
-                const today = new Date().toLocaleDateString();
-                const lastRunDate = new Date(
-                    latestTaskRun.data.startedAt
-                ).toLocaleDateString();
-                if (lastRunDate < today) {
+                const lastRunDate = new Date(latestTaskRun.data.startedAt);
+                if (isDateBeforeToday(lastRunDate)) {
                     await DoodleService.runDoodleTask();
                 }
             }

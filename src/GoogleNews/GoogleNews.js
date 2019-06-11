@@ -54,7 +54,7 @@ const StyledTab = withStyles(theme => ({
 
 function GoogleNews(props) {
     const {
-        googleNews: { feed = {}, items = [] },
+        googleNews: { items = [] },
         onNewsChange,
         newsLoading
     } = props;
