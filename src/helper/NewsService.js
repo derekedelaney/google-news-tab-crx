@@ -20,8 +20,14 @@ class NewsService {
                 const [lat, long] = await getLatLong();
                 const response = await fetch(locationUrl.replace('{lat,long}', `${lat},${long}`));
                 const json = await response.json();
-                const location = json.length > 0 ?
-                    `${json[0].address.neighbourhood.toLowerCase()},${json[0].address.state.toLowerCase()}` : '';
+                let location;
+                if (json.length > 0 && json[0].address) {
+                    const neighborhood = json[0].address.neighbourhood;
+                    const city = json[0].address.city;
+                    const state = json[0].address.state;
+                    const cityOrNeighborhood = `${city ? city.toLowerCase() : neighborhood ? neighborhood.toLowerCase() : ''}`
+                    location = `${cityOrNeighborhood ? cityOrNeighborhood + ',' : ''}${state ? state.toLowerCase() : ''}`
+                }
                 return fetch(rssNewsLocationUrl.replace('{location}', location))
             default:
                 return fetch(rssNewsUrl);
