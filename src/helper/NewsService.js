@@ -1,3 +1,4 @@
+import { getLatLong } from '.';
 
 const rssNewsUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss&count=38&api_key=uhvrh7g3aqgxmvoe3ehxnxl0r6rq8frx5wymysjn';
 const rssNewsTopicUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/news/rss/headlines/section/topic/{topic}&count=38&api_key=uhvrh7g3aqgxmvoe3ehxnxl0r6rq8frx5wymysjn';
@@ -18,6 +19,7 @@ class NewsService {
                 return fetch(rssNewsTopicUrl.replace('{topic}', topic));
             case 'LOCAL':
                 const [lat, long] = await getLatLong();
+                console.log([lat, long]);
                 const response = await fetch(locationUrl.replace('{lat,long}', `${lat},${long}`));
                 const json = await response.json();
                 let location;
@@ -33,18 +35,6 @@ class NewsService {
                 return fetch(rssNewsUrl);
         }
     }
-}
-
-async function getLatLong() {
-    return new Promise((resolve, reject) => {
-        if ('geolocation' in navigator){
-            navigator.geolocation.getCurrentPosition(function(position) {
-                resolve([position.coords.latitude, position.coords.longitude]);
-            });
-        } else {
-            reject();
-        }
-    })
 }
 
 export default NewsService;

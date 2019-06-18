@@ -1,4 +1,4 @@
-import { DoodleService, NewsService } from '.';
+import { DoodleService, NewsService, WeatherService } from '.';
 
 function isDateBeforeToday(date) {
     return new Date(date.toLocaleDateString()) < new Date(new Date().toLocaleDateString());
@@ -36,6 +36,15 @@ class NetworkController {
             return response.json();
         } catch (error) {
             console.error('Cannot load news', error);
+        }
+    }
+
+    static async loadWeather() {
+        try {
+            const response = await WeatherService.getCurrentWeather();
+            return response.json();
+        } catch (error) {
+            console.error('Cannot load weather', error);
         }
     }
 }

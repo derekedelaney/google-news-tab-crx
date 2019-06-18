@@ -64,3 +64,9 @@
     font-weight: 500;
     font-family: 'Google Sans Display',sans-serif;
 }
+
+.weather {
+    position: fixed;
+    top: 16px;
+    right: 16px
+}

@@ -19,7 +19,8 @@
     border: 1px solid #dadce0;
     border-radius: 8px;
     margin: 12px;
-    padding-right: 132px;
+    padding-right: 166px;
+    min-height: 182px;
 }
 
 .newsStoryContainer > img {
@@ -29,8 +30,8 @@
     bottom: auto;
     left: auto;
     z-index: 1;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     overflow: hidden;
     -webkit-border-radius: 8px;
     border-radius: 8px;
@@ -38,6 +39,7 @@
 
 .newsStoryContainer.noImage {
     padding-right: 0;
+    min-height: auto;
 }
 
 ol, ul {
