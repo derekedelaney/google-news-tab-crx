@@ -1,15 +1,10 @@
 import React from 'react';
-import { Loading } from '../Loading';
 import { GoogleDoodle } from './';
 
-function GoogleImages({ doodleLoading }) {
+function GoogleImages({ doodles }) {
     return (
         <div className="logo-container">
-            {doodleLoading ? (
-                <Loading />
-            ) : (
-                <GoogleDoodle />
-            )}
+            <GoogleDoodle doodles={doodles} />
         </div>
     );
 }

@@ -7,7 +7,6 @@ import { SearchBar } from './SearchBar';
 import { GoogleNews } from './GoogleNews';
 import { Weather } from './Weather';
 
-export const DoodleContext = createContext([]);
 export const NewsContext = createContext([]);
 
 class App extends Component {
@@ -15,7 +14,6 @@ class App extends Component {
         super(props);
         this.state = {
             weather: {},
-            doodleLoading: true,
             googleDoodles: [],
             googleNews: {},
             newsLoading: true
@@ -26,7 +24,7 @@ class App extends Component {
         const googleDoodles = await NetworkController.loadDoodles();
         const googleNews = await NetworkController.loadNews();
         NetworkController.loadWeather().then(weather => { this.setState({ weather })}); // Synchronous because it takes a bit longer.
-        this.setState({ googleDoodles, googleNews, doodleLoading: false, newsLoading: false });
+        this.setState({ googleDoodles, googleNews, newsLoading: false });
     }
 
     handleNewsChange = async topic => {
@@ -36,12 +34,10 @@ class App extends Component {
     }
 
     render() {
-        const { weather, doodleLoading, googleDoodles, googleNews, newsLoading } = this.state;
+        const { weather, googleDoodles, googleNews, newsLoading } = this.state;
         return <>
             <Weather weather={weather} />
-            <DoodleContext.Provider value={googleDoodles}>
-                <GoogleImage doodleLoading={doodleLoading} />
-            </DoodleContext.Provider>
+            <GoogleImage doodles={googleDoodles} />
             <SearchBar />
             <GoogleNews googleNews={googleNews} onNewsChange={this.handleNewsChange} newsLoading={newsLoading} />
         </>;
