@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { WeatherService } from '../helper';
+import weatherIcons from '../helper/WeatherIcons.json';
 
 export default function Weather(props) {
     console.log(props.weather);
@@ -7,8 +8,20 @@ export default function Weather(props) {
         return null;
     }
     const { weather: { properties: { periods: [currentForecast] } } } = props;
-    const [dayNight, key] = WeatherService.getIconKey(currentForecast.icon);
-    return (
-        <div className="weather">{currentForecast.temperature}&deg; {currentForecast.temperatureUnit}</div>
-    );
+    const [key, dayNight] = WeatherService.getIconKey(currentForecast.icon);
+    const iconObject = weatherIcons[key];
+
+    return [
+        <div className="weather">
+            <img src={iconObject.icons[dayNight]} alt={iconObject.description} />
+            <div className="flex-column ml-5">
+                <div>
+                    {currentForecast.temperature}&deg; {currentForecast.temperatureUnit}
+                </div>
+                <div>
+                    {iconObject.description}
+                </div>
+            </div>
+        </div>
+    ];
 }

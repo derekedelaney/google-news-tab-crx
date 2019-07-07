@@ -14,10 +14,12 @@ class WeatherService {
         return fetch();
     }
     static getIconKey(url) {
+        const urlRegex = /(day|night)\/(\w{3,})/gm
         const location = document.createElement('a');
         location.href = url
-        const urlSplit = location.pathname.split('/');
-        return [urlSplit[urlSplit.length-2], urlSplit[urlSplit.length-1]]
+        const [, dayNight, imageKey] = urlRegex.exec(location.pathname)
+
+        return [imageKey, dayNight]
     }
 }
 

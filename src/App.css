@@ -67,6 +67,31 @@
 
 .weather {
     position: fixed;
+    display: flex;
     top: 16px;
-    right: 16px
+    right: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #202124;
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    transition: top 0.3s;
+}
+
+.weather.offset {
+    transition: top 0.3s;
+    top: 64px;
+}
+
+.weather > img {
+    width: 50px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ml-5 {
+    margin-left: 5px;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import { InView } from 'react-intersection-observer';
 import { withStyles } from '@material-ui/core/styles';
@@ -62,6 +62,14 @@ function GoogleNews(props) {
     function handleChange(inView) {
         setIsInView(inView);
     }
+
+    useEffect(() => {
+        console.log('the effect went off', isInView);
+        const element = document.querySelector('.weather');
+        if (element) {
+            element.className = isInView ? 'weather' : 'weather offset';
+        }
+    }, [isInView])
 
     return (
         <div className="googleNewsContainer">
