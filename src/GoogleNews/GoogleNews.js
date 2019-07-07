@@ -64,7 +64,6 @@ function GoogleNews(props) {
     }
 
     useEffect(() => {
-        console.log('the effect went off', isInView);
         const element = document.querySelector('.weather');
         if (element) {
             element.className = isInView ? 'weather' : 'weather offset';
