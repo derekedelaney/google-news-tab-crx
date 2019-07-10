@@ -7,18 +7,18 @@ export default function Weather(props) {
         return null;
     }
     const { weather: { properties: { periods: [currentForecast] } } } = props;
-    const [key, dayNight] = WeatherService.getIconKey(currentForecast.icon);
+    const [key, dayNight] = WeatherService.getIconInfo(currentForecast.icon);
     const iconObject = weatherIcons[key];
 
     return [
-        <div className="weather" key="weather">
+        <div className="weather" key="weather" title={currentForecast.detailedForecast}>
             <img src={iconObject.icons[dayNight]} alt={iconObject.description} />
             <div className="flex-column ml-5">
                 <div>
                     {currentForecast.temperature}&deg; {currentForecast.temperatureUnit}
                 </div>
                 <div>
-                    {iconObject.description}
+                    {currentForecast.shortForecast}
                 </div>
             </div>
         </div>

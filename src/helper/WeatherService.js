@@ -13,13 +13,13 @@ class WeatherService {
     static async getWeatherIcons(day_night, key) {
         return fetch();
     }
-    static getIconKey(url) {
-        const urlRegex = /(day|night)\/(\w{3,})/gm
+    static getIconInfo(url) {
+        const urlRegex = /(day|night)\/(\w{3,})(,?(\d{2,3})?)/gm
         const location = document.createElement('a');
         location.href = url
-        const [, dayNight, imageKey] = urlRegex.exec(location.pathname)
+        const [, dayNight, imageKey, , precipitation] = urlRegex.exec(location.pathname)
 
-        return [imageKey, dayNight]
+        return [imageKey, dayNight, precipitation]
     }
 }
 

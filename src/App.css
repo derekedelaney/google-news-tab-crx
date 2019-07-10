@@ -18,6 +18,8 @@
 
 .doodle-logo {
     height: 220px;
+    width: fit-content;
+    margin: auto;
 }
 
 .loading-wrapper {
@@ -85,6 +87,12 @@
 
 .weather > img {
     width: 50px;
+    position: relative;
+}
+
+.precipitation {
+    position: absolute;
+    background-color: white;
 }
 
 .flex-column {
