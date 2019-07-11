@@ -1,5 +1,5 @@
-# A basic new tab page with news under the search bar.
-Add news to your New Tab page
+# NewsTab Chrome Extension.
+A basic new tab page with news under the search bar
 
 [Chrome Web Store](https://chrome.google.com/webstore/detail/newstab/ofegllclgfaldidpfebjcleoaboaddno)
 
