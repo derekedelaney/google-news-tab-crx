@@ -8,15 +8,15 @@ It also adds the current weather of the current location in the corner of the sc
 If there is an available google doodle of the current date from https://www.google.com/doodles, then It will use that as the logo instead of the google logo, similar to the google home page.
 
 Available topics:
-    - Top News
-    - U.S.
-    - World
-    - Local Stories*
-    - Business
-    - Technology
-    - Entertainment
-    - Sports
-    - Science
-    - Health
+- Top News
+- U.S.
+- World
+- Local Stories*
+- Business
+- Technology
+- Entertainment
+- Sports
+- Science
+- Health
 
 ###### **Local Stories uses your current location to determine a city and state for localized news.*
